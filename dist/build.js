@@ -3215,7 +3215,7 @@
   };
   // Input 10
   var banner_utils = {
-    animationSpeed: 550,
+    animationSpeed: 250,
     animationDelay: 120,
     bannerHeight: "76px",
     error_timeout: 2000,
@@ -3768,7 +3768,7 @@
   journeys_utils.branch = null;
   journeys_utils.banner = null;
   journeys_utils.isJourneyDisplayed = !1;
-  journeys_utils.animationSpeed = 550;
+  journeys_utils.animationSpeed = 250;
   journeys_utils.animationDelay = 120;
   journeys_utils.exitAnimationDisabled = !1;
   journeys_utils.entryAnimationDisabled = !1;
