@@ -3216,7 +3216,7 @@
   // Input 10
   var banner_utils = {
     animationSpeed: 500,
-    animationDelay: 20,
+    animationDelay: 80,
     bannerHeight: "76px",
     error_timeout: 2000,
     success_timeout: 3000,
@@ -3769,7 +3769,7 @@
   journeys_utils.banner = null;
   journeys_utils.isJourneyDisplayed = !1;
   journeys_utils.animationSpeed = 500;
-  journeys_utils.animationDelay = 20;
+  journeys_utils.animationDelay = 80;
   journeys_utils.exitAnimationDisabled = !1;
   journeys_utils.entryAnimationDisabled = !1;
   journeys_utils.journeyDismissed = !1;
