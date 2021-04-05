@@ -1917,7 +1917,7 @@
     r();
   };
   // Input 10
-  var banner_utils = {animationSpeed:250, animationDelay:1000, bannerHeight:"76px", error_timeout:2000, success_timeout:3000, removeElement:function(a) {
+  var banner_utils = {animationSpeed:250, animationDelay:20, bannerHeight:"76px", error_timeout:2000, success_timeout:3000, removeElement:function(a) {
     a && a.parentNode.removeChild(a);
   }, hasClass:function(a, b) {
     return !!a.className.match(new RegExp("(\\s|^)" + b + "(\\s|$)"));
@@ -2175,7 +2175,7 @@
   journeys_utils.banner = null;
   journeys_utils.isJourneyDisplayed = !1;
   journeys_utils.animationSpeed = 250;
-  journeys_utils.animationDelay = 1000;
+  journeys_utils.animationDelay = 20;
   journeys_utils.exitAnimationDisabled = !1;
   journeys_utils.entryAnimationDisabled = !1;
   journeys_utils.journeyDismissed = !1;
