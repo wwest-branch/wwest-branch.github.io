@@ -3771,7 +3771,7 @@
   journeys_utils.banner = null;
   journeys_utils.isJourneyDisplayed = !1;
   journeys_utils.animationSpeed = 250;
-  journeys_utils.animationDelay = 2000;
+  journeys_utils.animationDelay = 20;
   journeys_utils.exitAnimationDisabled = !1;
   journeys_utils.entryAnimationDisabled = !1;
   journeys_utils.journeyDismissed = !1;
