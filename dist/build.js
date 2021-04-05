@@ -3341,7 +3341,6 @@
   // Input 11
   var banner_css = {
     banner: function (a) {
-      console.log("Sppeed", banner_utils.animationSpeed);
       return (
         ".branch-banner-is-active { -webkit-transition: all " +
         (1.5 * banner_utils.animationSpeed) / 1000 +
@@ -3900,18 +3899,16 @@
     b.type = "text/css";
     b.id = "branch-iframe-css";
     journeys_utils.bodyMarginTop = banner_utils.getBodyStyle("margin-top");
-    var c = +journeys_utils.bodyMarginTop.slice(0, -2);
+    journeys_utils.bodyMarginTop.slice(0, -2);
     journeys_utils.bodyMarginBottom = banner_utils.getBodyStyle(
       "margin-bottom"
     );
-    var d = +journeys_utils.bodyMarginBottom.slice(0, -2),
-      e = +journeys_utils.bannerHeight.slice(0, -2);
-    console.log("banner margin number", journeys_utils.bannerHeight);
+    var c = +journeys_utils.bodyMarginBottom.slice(0, -2),
+      d = +journeys_utils.bannerHeight.slice(0, -2);
     a ||
-      ("top" === journeys_utils.position
-        ? (document.body.style.marginTop = (+e + c).toString() + "px")
-        : "bottom" === journeys_utils.position &&
-          (document.body.style.marginBottom = (+e + d).toString() + "px"));
+      "top" === journeys_utils.position ||
+      "bottom" !== journeys_utils.position ||
+      (document.body.style.marginBottom = (+d + c).toString() + "px");
     0 < journeys_utils.divToInjectParents.length &&
       journeys_utils.divToInjectParents.forEach(function (a) {
         var b,
