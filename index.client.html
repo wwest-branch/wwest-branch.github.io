@@ -189,20 +189,20 @@ We're hiring @ https://jobs.lever.co/drizly
     />
 
     <script>
-      //   window.getDrizlyCookie = function (name) {
-      //     var result = null;
-      //     var entries = document.cookie.split(";");
-      //     for (var i = 0; i < entries.length; i++) {
-      //       var currentEntry = entries[i].trim();
-      //       if (currentEntry.indexOf(name) === 0) {
-      //         result = currentEntry.substring(
-      //           name.length + 1,
-      //           currentEntry.length
-      //         );
-      //       }
-      //     }
-      //     return result;
-      //   };
+      window.getDrizlyCookie = function (name) {
+        var result = null;
+        var entries = document.cookie.split(";");
+        for (var i = 0; i < entries.length; i++) {
+          var currentEntry = entries[i].trim();
+          if (currentEntry.indexOf(name) === 0) {
+            result = currentEntry.substring(
+              name.length + 1,
+              currentEntry.length
+            );
+          }
+        }
+        return result;
+      };
     </script>
 
     <script>
@@ -2062,7 +2062,7 @@ We're hiring @ https://jobs.lever.co/drizly
           for (; s < _.length; ) c(h, _[s++]);
           d = r.createElement(a);
           d.async = 1;
-          d.src = "dist/build.js";
+          d.src = "./dist/build.js";
           k = r.getElementsByTagName(a)[0];
           k.parentNode.insertBefore(d, k);
           b[n] = h;
@@ -2103,12 +2103,10 @@ We're hiring @ https://jobs.lever.co/drizly
         const fullScreenList = ["/order/track"];
         const path = window.location.pathname;
         function showBanner() {
-          return (
-              true
-            // isBranchDevice() &&
-            // !isInList(blocklist, path) &&
-            // !window.localStorage.getItem("branchBannerClosed")
-          );
+          return true;
+          // isBranchDevice() &&
+          // !isInList(blocklist, path) &&
+          // !window.localStorage.getItem("branchBannerClosed")
         }
         function isBranchDevice() {
           return !!window.navigator.userAgentData
@@ -2132,7 +2130,7 @@ We're hiring @ https://jobs.lever.co/drizly
           window.localStorage.setItem("branchBannerClosed", "1");
         }
         function init() {
-          console.log("should show banner", showBanner());
+          console.log("show banner", showBanner());
           if (showBanner()) {
             // if (!isInList(fullScreenList, path)) {
             document.documentElement.classList.add("should-show-branch-banner");
@@ -2312,7 +2310,7 @@ We're hiring @ https://jobs.lever.co/drizly
           >Become a Drizly retailer</a
         >
       </nav>
-      <header id="DrzHeader" style="margin-top: 0">
+      <header class="header-module__Header___13n9E">
         <div class="branch-journeys-top"></div>
         <div class="header-module__Row___JVksN header-module__Nav___22DjO">
           <nav
