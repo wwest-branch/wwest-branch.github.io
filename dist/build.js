@@ -3898,15 +3898,12 @@
     b.type = "text/css";
     b.id = "branch-iframe-css";
     journeys_utils.bodyMarginTop = banner_utils.getBodyStyle("margin-top");
-    var c = +journeys_utils.bodyMarginTop.slice(0, -2);
+    journeys_utils.bodyMarginTop.slice(0, -2);
     journeys_utils.bodyMarginBottom = banner_utils.getBodyStyle(
       "margin-bottom"
     );
     journeys_utils.bodyMarginBottom.slice(0, -2);
-    var d = +journeys_utils.bannerHeight.slice(0, -2);
-    a ||
-      "top" !== journeys_utils.position ||
-      (document.body.style.marginTop = (+d + c).toString() + "px");
+    journeys_utils.bannerHeight.slice(0, -2);
     0 < journeys_utils.divToInjectParents.length &&
       journeys_utils.divToInjectParents.forEach(function (a) {
         var b,
