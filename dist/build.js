@@ -3873,7 +3873,6 @@
     a.setAttribute("aria-label", "Branch Banner");
     utils.addNonceAttribute(a);
     document.getElementById("banner-container").appendChild(a);
-    document.body.appendChild(a);
     return a;
   };
   journeys_utils.createIframeInnerHTML = function (a, b) {
