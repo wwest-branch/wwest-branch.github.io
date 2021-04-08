@@ -1350,7 +1350,7 @@
   var config = {
     app_service_endpoint: "https://app.link",
     link_service_endpoint: "https://bnc.lt",
-    api_endpoint: "https:/api2.branch.io",
+    api_endpoint: "https://api2.branch.io",
     version: "2.58.0",
   };
   // Input 3
