@@ -3866,7 +3866,6 @@
   journeys_utils.createAndAppendIframe = function () {
     var a = document.createElement("iframe");
     a.src = "about:blank";
-    a.style.overflow = "hidden";
     a.scrolling = "no";
     a.id = "branch-banner-iframe";
     a.className = "branch-animation";
