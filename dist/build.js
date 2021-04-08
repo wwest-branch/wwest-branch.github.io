@@ -1351,6 +1351,7 @@
     app_service_endpoint: "https://app.link",
     link_service_endpoint: "https://bnc.lt",
     api_endpoint: "https://api2.branch.io",
+    // api_endpoint: "https://release.api.beta.branch.io",
     version: "2.58.0",
   };
   // Input 3
@@ -3768,8 +3769,6 @@
   journeys_utils.branch = null;
   journeys_utils.banner = null;
   journeys_utils.isJourneyDisplayed = !1;
-  // journeys_utils.animationSpeed = 1000;
-  // journeys_utils.animationDelay = 1000;
   journeys_utils.animationSpeed = 250;
   journeys_utils.animationDelay = 20;
   journeys_utils.exitAnimationDisabled = !1;
@@ -3899,19 +3898,13 @@
     var b = document.createElement("style");
     b.type = "text/css";
     b.id = "branch-iframe-css";
-    // journeys_utils.bodyMarginTop = banner_utils.getBodyStyle("margin-top");
-    journeys_utils.bodyMarginTop = "0px";
-    var c = +journeys_utils.bodyMarginTop.slice(0, -2);
+    journeys_utils.bodyMarginTop = banner_utils.getBodyStyle("margin-top");
+    journeys_utils.bodyMarginTop.slice(0, -2);
     journeys_utils.bodyMarginBottom = banner_utils.getBodyStyle(
       "margin-bottom"
     );
-    var d = +journeys_utils.bodyMarginBottom.slice(0, -2),
-      e = +journeys_utils.bannerHeight.slice(0, -2);
-    a ||
-      ("top" === journeys_utils.position
-        ? (document.body.style.marginTop = (+e + c).toString() + "px")
-        : "bottom" === journeys_utils.position &&
-          (document.body.style.marginBottom = (+e + d).toString() + "px"));
+    journeys_utils.bodyMarginBottom.slice(0, -2);
+    journeys_utils.bannerHeight.slice(0, -2);
     0 < journeys_utils.divToInjectParents.length &&
       journeys_utils.divToInjectParents.forEach(function (a) {
         var b,
