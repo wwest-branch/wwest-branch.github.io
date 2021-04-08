@@ -1350,7 +1350,7 @@
   var config = {
     app_service_endpoint: "https://app.link",
     link_service_endpoint: "https://bnc.lt",
-    api_endpoint: "https://api2.branch.io",
+    api_endpoint: "https:/api2.branch.io",
     version: "2.58.0",
   };
   // Input 3
@@ -3578,7 +3578,6 @@
           f.removeAttribute("disabled");
           e.removeAttribute("disabled");
           f.style.opacity = "1";
-          e.style.opacity = "1";
           g.style.opacity = "0";
         },
         m = function () {
@@ -3769,10 +3768,8 @@
   journeys_utils.branch = null;
   journeys_utils.banner = null;
   journeys_utils.isJourneyDisplayed = !1;
-  journeys_utils.animationSpeed = 0;
-  journeys_utils.animationDelay = 0;
-  // journeys_utils.animationSpeed = 250;
-  // journeys_utils.animationDelay = 20;
+  journeys_utils.animationSpeed = 250;
+  journeys_utils.animationDelay = 20;
   journeys_utils.exitAnimationDisabled = !1;
   journeys_utils.entryAnimationDisabled = !1;
   journeys_utils.journeyDismissed = !1;
@@ -3868,14 +3865,14 @@
   journeys_utils.createAndAppendIframe = function () {
     var a = document.createElement("iframe");
     a.src = "about:blank";
-    // a.style.overflow = "hidden";
+    a.style.overflow = "hidden";
     a.scrolling = "no";
     a.id = "branch-banner-iframe";
     a.className = "branch-animation";
     a.title = "Branch Banner";
     a.setAttribute("aria-label", "Branch Banner");
     utils.addNonceAttribute(a);
-    document.getElementById("banner-container").appendChild(a);
+    document.body.appendChild(a);
     return a;
   };
   journeys_utils.createIframeInnerHTML = function (a, b) {
@@ -3958,7 +3955,9 @@
         journeys_utils.bannerHeight +
         "; z-index: 99999; " +
         b +
-        " }\n@media only screen and (orientation: landscape) { body { " +
+        " }\n#branch-banner-iframe { position: " +
+        journeys_utils.sticky +
+        "; }\n@media only screen and (orientation: landscape) { body { " +
         ("top" === journeys_utils.position
           ? "margin-top: "
           : "margin-bottom: ") +
