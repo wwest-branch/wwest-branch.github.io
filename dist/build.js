@@ -3871,7 +3871,7 @@
     // a.style.overflow = "hidden";
     a.scrolling = "no";
     a.id = "branch-banner-iframe";
-    a.className = "branch-animation";
+    // a.className = "branch-animation";
     a.title = "Branch Banner";
     a.setAttribute("aria-label", "Branch Banner");
     utils.addNonceAttribute(a);
