@@ -3768,8 +3768,8 @@
   journeys_utils.branch = null;
   journeys_utils.banner = null;
   journeys_utils.isJourneyDisplayed = !1;
-  journeys_utils.animationSpeed = 850;
-  journeys_utils.animationDelay = 0;
+  journeys_utils.animationSpeed = 1000;
+  journeys_utils.animationDelay = 1000;
   // journeys_utils.animationSpeed = 250;
   // journeys_utils.animationDelay = 20;
   journeys_utils.exitAnimationDisabled = !1;
