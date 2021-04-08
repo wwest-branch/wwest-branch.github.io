@@ -3956,9 +3956,7 @@
         journeys_utils.bannerHeight +
         "; z-index: 99999; " +
         b +
-        " }\n#branch-banner-iframe { position: " +
-        journeys_utils.sticky +
-        "; }\n@media only screen and (orientation: landscape) { body { " +
+        " }\n@media only screen and (orientation: landscape) { body { " +
         ("top" === journeys_utils.position
           ? "margin-top: "
           : "margin-bottom: ") +
