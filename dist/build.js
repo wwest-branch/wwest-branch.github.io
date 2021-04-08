@@ -3866,10 +3866,12 @@
   journeys_utils.createAndAppendIframe = function () {
     var a = document.createElement("iframe");
     a.src = "about:blank";
+    a.style.overflow = "hidden";
     a.scrolling = "no";
     a.id = "branch-banner-iframe";
     a.className = "branch-animation";
     a.title = "Branch Banner";
+    a.rel = "preload";
     a.setAttribute("aria-label", "Branch Banner");
     utils.addNonceAttribute(a);
     document.getElementById("banner-container").appendChild(a);
