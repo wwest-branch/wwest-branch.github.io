@@ -3900,6 +3900,7 @@
     b.type = "text/css";
     b.id = "branch-iframe-css";
     // journeys_utils.bodyMarginTop = banner_utils.getBodyStyle("margin-top");
+    journeys_utils.bodyMarginTop = "0px";
     var c = +journeys_utils.bodyMarginTop.slice(0, -2);
     journeys_utils.bodyMarginBottom = banner_utils.getBodyStyle(
       "margin-bottom"
