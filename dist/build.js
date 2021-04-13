@@ -3770,8 +3770,6 @@
   journeys_utils.isJourneyDisplayed = !1;
   journeys_utils.animationSpeed = 550;
   journeys_utils.animationDelay = 140;
-  // journeys_utils.animationSpeed = 250;
-  // journeys_utils.animationDelay = 20;
   journeys_utils.exitAnimationDisabled = !1;
   journeys_utils.entryAnimationDisabled = !1;
   journeys_utils.journeyDismissed = !1;
