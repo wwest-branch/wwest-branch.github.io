@@ -3948,10 +3948,10 @@
     journeys_utils.entryAnimationDisabled ||
       ((a =
         "body { -webkit-transition: all " +
-        // (1.5 * journeys_utils.animationSpeed) / 1000 +
+        (1.5 * journeys_utils.animationSpeed) / 1000 +
         "s ease; }\n"),
-      // (document.body.style.transition =
-      //   "all 0" + (1.5 * journeys_utils.animationSpeed) / 1000 + "s ease"),
+      (document.body.style.transition =
+        "all 0" + (1.5 * journeys_utils.animationSpeed) / 1000 + "s ease"),
       // (document.body.style.transform =
       //   "translate(0px, " + banner_utils.bannerHeight + ")"),
       // (document.body.style.margin = banner_utils.bannerHeight),
@@ -3971,10 +3971,10 @@
         // "); margin-top:" +
         // banner_utils.bannerHeight +
         // ";
-        "transition: all 0" +
-        (1.5 * journeys_utils.animationSpeed) / 1000 +
-        "s ease" +
-        // b +
+        // "transition: all 0" +
+        // (1.5 * journeys_utils.animationSpeed) / 1000 +
+        // "s ease" +
+        b +
         " }\n#branch-banner-iframe { position: " +
         journeys_utils.sticky +
         "; }\n@media only screen and (orientation: landscape) { body { " +
