@@ -3345,7 +3345,11 @@
         (1.5 * banner_utils.animationSpeed) / 1000 +
         "s ease; transition: all 0" +
         (1.5 * banner_utils.animationSpeed) / 1000 +
-        "s ease; }\n#branch-banner { width:100%; z-index: 99999; font-family: Helvetica Neue, Sans-serif; -webkit-font-smoothing: antialiased; -webkit-user-select: none; -moz-user-select: none; user-select: none; -webkit-transition: all " +
+        "s ease; transform: translate(0px, " +
+        banner_utils.bannerHeight +
+        "); margin: " +
+        banner_utils.bannerHeight +
+        "}\n#branch-banner { width:100%; z-index: 99999; font-family: Helvetica Neue, Sans-serif; -webkit-font-smoothing: antialiased; -webkit-user-select: none; -moz-user-select: none; user-select: none; -webkit-transition: all " +
         banner_utils.animationSpeed / 1000 +
         "s ease; transition: all 0" +
         banner_utils.animationSpeed / 1000 +
@@ -3946,8 +3950,11 @@
         "body { -webkit-transition: all " +
         (1.5 * journeys_utils.animationSpeed) / 1000 +
         "s ease; }\n"),
-      (document.body.style.transition =
-        "all 0" + (1.5 * journeys_utils.animationSpeed) / 1000 + "s ease"),
+      // (document.body.style.transition =
+      //   "all 0" + (1.5 * journeys_utils.animationSpeed) / 1000 + "s ease"),
+      // (document.body.style.transform =
+      //   "translate(0px, " + banner_utils.bannerHeight + ")"),
+      // (document.body.style.margin = banner_utils.bannerHeight),
       (b =
         "-webkit-transition: all " +
         journeys_utils.animationSpeed / 1000 +
@@ -3958,17 +3965,23 @@
       (a ? a : "") +
       ("#branch-banner-iframe { box-shadow: 0 0 5px rgba(0, 0, 0, .35); width: 1px; min-width:100%; left: 0; right: 0; border: 0; height: " +
         journeys_utils.bannerHeight +
-        "; z-index: 99999; " +
-        b +
+        "; z-index: 99999; transform: translate(0px, " +
+        banner_utils.bannerHeight +
+        "); margin-top:" +
+        banner_utils.bannerHeight +
+        "; transition: all 0" +
+        (1.5 * journeys_utils.animationSpeed) / 1000 +
+        "s ease" +
+        // b +
         " }\n#branch-banner-iframe { position: " +
         journeys_utils.sticky +
         "; }\n@media only screen and (orientation: landscape) { body { " +
-        ("top" === journeys_utils.position
-          ? "margin-top: "
-          : "margin-bottom: ") +
-        (journeys_utils.isFullPage
-          ? journeys_utils.windowWidth + "px"
-          : journeys_utils.bannerHeight) +
+        // ("top" === journeys_utils.position
+        //   ? "margin-top: "
+        //   : "margin-bottom: ") +
+        // (journeys_utils.isFullPage
+        //   ? journeys_utils.windowWidth + "px"
+        //   : journeys_utils.bannerHeight) +
         "; }\n#branch-banner-iframe { height: " +
         (journeys_utils.isFullPage
           ? journeys_utils.windowWidth + "px"
