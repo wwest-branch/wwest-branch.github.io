@@ -3966,11 +3966,11 @@
       ("#branch-banner-iframe { box-shadow: 0 0 5px rgba(0, 0, 0, .35); width: 1px; min-width:100%; left: 0; right: 0; border: 0; height: " +
         journeys_utils.bannerHeight +
         "; z-index: 99999;" +
-        // transform: translate(0px, -76px " +
-        // // banner_utils.bannerHeight +
-        // "); margin-top: 76px" +
-        // // -banner_utils.bannerHeight +
-        // ";" +
+        "transform: translate(0px, 76px " +
+        // banner_utils.bannerHeight +
+        "); margin-top: -76px" +
+        // -banner_utils.bannerHeight +
+        ";" +
         // "transition: all 0" +
         // (1.5 * journeys_utils.animationSpeed) / 1000 +
         // "s ease" +
