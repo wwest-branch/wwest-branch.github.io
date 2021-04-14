@@ -47,9 +47,15 @@
     </style>
   </head>
   <body>
-    <div id="banner-container"></div>
+    <!-- <div id="banner-container"></div> -->
     <script>
-      console.log("hi", window);
+      var container = document.createElement("div");
+      container.id = "banner-container";
+      document.body.appendChild(container);
+      // console.log("window", window, window.branch);
+      // console.log("body before", document.body);
+      // window.branch.branch_key ? document.body.appendChild(container) : null;
+      // console.log("body after", document.body);
     </script>
     <div class="container title">
       <div class="row col-lg-8 col-lg-offset-2">
@@ -255,15 +261,15 @@
       );
 
       // Note that this example is using the key in two places, here and below
-      branch.init(
-        // "key_live_bdoZ8paJ8GcdzMoetn1RdfohqEmTtzo3",
-        "key_live_kkGffiMKsmMX4B5umosCzlkduueBt6qZ",
-        function (err, data) {
-          document.getElementsByClassName("info")[0].innerHTML = JSON.stringify(
-            data
-          );
-        }
-      );
+      // branch.init(
+      //   // "key_live_bdoZ8paJ8GcdzMoetn1RdfohqEmTtzo3",
+      //   "key_live_kkGffiMKsmMX4B5umosCzlkduueBt6qZ",
+      //   function (err, data) {
+      //     document.getElementsByClassName("info")[0].innerHTML = JSON.stringify(
+      //       data
+      //     );
+      //   }
+      // );
       branch.setBranchViewData({
         data: {
           //'$journeys_cta': 'https://joerg-wangler.de',
@@ -511,6 +517,15 @@
         );
         response.html("none");
       });
+    </script>
+    <script>
+      const containerId = document.getElementById("banner-container");
+      console.log("CONTAINER ID", containerId);
+      containerId.remove();
+      // console.log("coainter", container);
+      // console.log("document body", document.body.childNodes);
+      // document.body.removeChild(containerId);
+      // console.log("document body", document);
     </script>
   </body>
 </html>
