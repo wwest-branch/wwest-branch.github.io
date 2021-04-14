@@ -3965,8 +3965,8 @@
       (a ? a : "") +
       ("#branch-banner-iframe { box-shadow: 0 0 5px rgba(0, 0, 0, .35); width: 1px; min-width:100%; left: 0; right: 0; border: 0; height: " +
         journeys_utils.bannerHeight +
-        "; z-index: 99999; transform: translate(0px, " +
-        banner_utils.bannerHeight +
+        "; z-index: 99999; transform: translate(0px, 1577px" +
+        // banner_utils.bannerHeight +
         "); margin-top: -76px" +
         // -banner_utils.bannerHeight +
         ";" +
@@ -4029,7 +4029,7 @@
       b
         ? ((a.style.top = null), (a.style.bottom = null))
         : "top" === journeys_utils.position
-        ? (a.style.top = "0")
+        ? (a.style.top = null)
         : "bottom" === journeys_utils.position &&
           (journeys_utils.journeyLinkData &&
           journeys_utils.journeyLinkData.journey_link_data &&
