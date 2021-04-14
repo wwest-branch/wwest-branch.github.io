@@ -3967,7 +3967,7 @@
         journeys_utils.bannerHeight +
         "; z-index: 99999; transform: translate(0px, " +
         banner_utils.bannerHeight +
-        "); margin-bottom: -76px" +
+        "); margin-top: -76px" +
         // -banner_utils.bannerHeight +
         ";" +
         // "transition: all 0" +
