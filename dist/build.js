@@ -3973,7 +3973,7 @@
         // "transition: all 0" +
         // (1.5 * journeys_utils.animationSpeed) / 1000 +
         // "s ease" +
-        // b +
+        b +
         " }\n#branch-banner-iframe { position: " +
         journeys_utils.sticky +
         "; }\n@media only screen and (orientation: landscape) { body { " +
