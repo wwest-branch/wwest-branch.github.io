@@ -3970,9 +3970,9 @@
         "); margin-top: 76px" +
         // -banner_utils.bannerHeight +
         ";" +
-        "transition: all 0" +
-        (1.5 * journeys_utils.animationSpeed) / 1000 +
-        "s ease" +
+        // "transition: all 0" +
+        // (1.5 * journeys_utils.animationSpeed) / 1000 +
+        // "s ease" +
         // b +
         " }\n#branch-banner-iframe { position: " +
         journeys_utils.sticky +
