@@ -3345,11 +3345,7 @@
         (1.5 * banner_utils.animationSpeed) / 1000 +
         "s ease; transition: all 0" +
         (1.5 * banner_utils.animationSpeed) / 1000 +
-        "s ease; transform: translate(0px, " +
-        banner_utils.bannerHeight +
-        "); margin: " +
-        banner_utils.bannerHeight +
-        "}\n#branch-banner { width:100%; z-index: 99999; font-family: Helvetica Neue, Sans-serif; -webkit-font-smoothing: antialiased; -webkit-user-select: none; -moz-user-select: none; user-select: none; -webkit-transition: all " +
+        "s ease; }\n#branch-banner { width:100%; z-index: 99999; font-family: Helvetica Neue, Sans-serif; -webkit-font-smoothing: antialiased; -webkit-user-select: none; -moz-user-select: none; user-select: none; -webkit-transition: all " +
         banner_utils.animationSpeed / 1000 +
         "s ease; transition: all 0" +
         banner_utils.animationSpeed / 1000 +
@@ -3370,7 +3366,7 @@
         banner_utils.bannerHeight +
         "; background: rgba(255, 255, 255, 0.95); color: #333; " +
         ("top" === a.position ? "border-bottom" : "border-top") +
-        ': 1px solid #ddd; }\n#branch-banner-close { color: #000; font-size: 24px; top: 14px; opacity: .5; transition: opacity .3s ease; }\n#branch-banner-close:hover { opacity: 1; }\n#branch-banner .title { font-size: 18px; font-weight:bold; color: #555; }\n#branch-banner .description { font-size: 12px; font-weight: normal; color: #777; max-height: 30px; overflow: hidden; }\n#branch-banner .icon { float: left; padding-bottom: 40px; margin-right: 10px; margin-left: 5px; }\n#branch-banner .icon img { width: 63px; height: 63px; margin-right: 0; }\n#branch-banner .reviews { font-size:13px; margin: 1px 0 3px 0; color: #777; }\n#branch-banner .reviews .star { display:inline-block; position: relative; margin-right:0; }\n#branch-banner .reviews .star span { display: inline-block; margin-right: 0; color: #555; position: absolute; top: 0; left: 0; }\n#branch-banner .reviews .review-count { font-size:10px; }\n#branch-banner .reviews .star .half { width: 50%; overflow: hidden; display: block; }\n#branch-banner .content .left { padding: 6px 5px 6px 5px; }\n#branch-banner .vertically-align-middle { top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); }\n#branch-banner .details > * { display: block; }\n#branch-banner .content .left { height: 63px; }\n#branch-banner .content .right { float: right; height: 63px; margin-bottom: 50px; padding-top: 22px; z-index: 1; }\n#branch-banner .right > div { float: left; }\n#branch-banner-action { top: 17px; }\n#branch-banner .content:after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 1px; background: rgba(0, 0, 0, 0.2); }\n#branch-banner .theme-dark.content { background: rgba(51, 51, 51, 0.95); }\n#branch-banner .theme-dark #branch-banner-close{ color: #fff; text-shadow: 0 1px 1px rgba(0, 0, 0, .15); }\n#branch-banner .theme-dark .details { text-shadow: 0 1px 1px rgba(0, 0, 0, .15); }\n#branch-banner .theme-dark .title { color: #fff; }\n#branch-banner .theme-dark .description { color: #fff; }\n#branch-banner .theme-dark .reviews { color: #888; }\n#branch-banner .theme-dark .reviews .star span{ color: #fff; }\n#branch-banner .theme-dark .reviews .review-count{ color: #fff; }\n'
+        ': 1px solid #ddd; }\n#branch-banner-close { color: #000; font-size: 24px; top: 14px; opacity: .5; transition: opacity .3s ease; }\n#branch-banner-close:hover { opacity: 1; }\n#branch-banner .title { font-size: 18px; font-weight:bold; color: #555; }\n#branch-banner .icon { float: left; padding-bottom: 40px; margin-right: 10px; margin-left: 5px; }\n#branch-banner .icon img { width: 63px; height: 63px; margin-right: 0; }\n#branch-banner .reviews { font-size:13px; margin: 1px 0 3px 0; color: #777; }\n#branch-banner .reviews .star { display:inline-block; position: relative; margin-right:0; }\n#branch-banner .reviews .star span { display: inline-block; margin-right: 0; color: #555; position: absolute; top: 0; left: 0; }\n#branch-banner .reviews .review-count { font-size:10px; }\n#branch-banner .reviews .star .half { width: 50%; overflow: hidden; display: block; }\n#branch-banner .content .left { padding: 6px 5px 6px 5px; }\n#branch-banner .vertically-align-middle { top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); }\n#branch-banner .details > * { display: block; }\n#branch-banner .content .left { height: 63px; }\n#branch-banner .content .right { float: right; height: 63px; margin-bottom: 50px; padding-top: 22px; z-index: 1; }\n#branch-banner .right > div { float: left; }\n#branch-banner-action { top: 17px; }\n#branch-banner .content:after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 1px; background: rgba(0, 0, 0, 0.2); }\n#branch-banner .theme-dark.content { background: rgba(51, 51, 51, 0.95); }\n#branch-banner .theme-dark #branch-banner-close{ color: #fff; text-shadow: 0 1px 1px rgba(0, 0, 0, .15); }\n#branch-banner .theme-dark .details { text-shadow: 0 1px 1px rgba(0, 0, 0, .15); }\n#branch-banner .theme-dark .title { color: #fff; }\n#branch-banner .theme-dark .description { color: #fff; }\n#branch-banner .theme-dark .reviews { color: #888; }\n#branch-banner .theme-dark .reviews .star span{ color: #fff; }\n#branch-banner .theme-dark .reviews .review-count{ color: #fff; }\n'
       );
     },
     desktop:
@@ -3547,6 +3543,7 @@
           '"><div id="branch-banner" class="branch-animation">' +
           banner_html.banner(a, b) +
           "</body></html>";
+      console.log("iframe html", d);
       c.contentWindow.document.open();
       c.contentWindow.document.write(d);
       c.contentWindow.document.close();
@@ -3772,8 +3769,8 @@
   journeys_utils.branch = null;
   journeys_utils.banner = null;
   journeys_utils.isJourneyDisplayed = !1;
-  journeys_utils.animationSpeed = 550;
-  journeys_utils.animationDelay = 140;
+  journeys_utils.animationSpeed = 250;
+  journeys_utils.animationDelay = 20;
   journeys_utils.exitAnimationDisabled = !1;
   journeys_utils.entryAnimationDisabled = !1;
   journeys_utils.journeyDismissed = !1;
@@ -3874,9 +3871,10 @@
     a.id = "branch-banner-iframe";
     a.className = "branch-animation";
     a.title = "Branch Banner";
+    a.rel = "preload";
     a.setAttribute("aria-label", "Branch Banner");
     utils.addNonceAttribute(a);
-    document.body.appendChild(a);
+    document.getElementById("banner-container").appendChild(a);
     return a;
   };
   journeys_utils.createIframeInnerHTML = function (a, b) {
@@ -3902,17 +3900,12 @@
     b.type = "text/css";
     b.id = "branch-iframe-css";
     journeys_utils.bodyMarginTop = banner_utils.getBodyStyle("margin-top");
-    var c = +journeys_utils.bodyMarginTop.slice(0, -2);
+    journeys_utils.bodyMarginTop.slice(0, -2);
     journeys_utils.bodyMarginBottom = banner_utils.getBodyStyle(
       "margin-bottom"
     );
-    var d = +journeys_utils.bodyMarginBottom.slice(0, -2),
-      e = +journeys_utils.bannerHeight.slice(0, -2);
-    a ||
-      ("top" === journeys_utils.position
-        ? (document.body.style.marginTop = (+e + c).toString() + "px")
-        : "bottom" === journeys_utils.position &&
-          (document.body.style.marginBottom = (+e + d).toString() + "px"));
+    journeys_utils.bodyMarginBottom.slice(0, -2);
+    journeys_utils.bannerHeight.slice(0, -2);
     0 < journeys_utils.divToInjectParents.length &&
       journeys_utils.divToInjectParents.forEach(function (a) {
         var b,
@@ -3952,9 +3945,6 @@
         "s ease; }\n"),
       (document.body.style.transition =
         "all 0" + (1.5 * journeys_utils.animationSpeed) / 1000 + "s ease"),
-      // (document.body.style.transform =
-      //   "translate(0px, " + banner_utils.bannerHeight + ")"),
-      // (document.body.style.margin = banner_utils.bannerHeight),
       (b =
         "-webkit-transition: all " +
         journeys_utils.animationSpeed / 1000 +
@@ -3965,25 +3955,15 @@
       (a ? a : "") +
       ("#branch-banner-iframe { box-shadow: 0 0 5px rgba(0, 0, 0, .35); width: 1px; min-width:100%; left: 0; right: 0; border: 0; height: " +
         journeys_utils.bannerHeight +
-        "; z-index: 99999;" +
-        "transform: translate(0px, 76px " +
-        // banner_utils.bannerHeight +
-        "); margin-top: -76px" +
-        // -banner_utils.bannerHeight +
-        ";" +
-        // "transition: all 0" +
-        // (1.5 * journeys_utils.animationSpeed) / 1000 +
-        // "s ease" +
+        "; z-index: 99999; " +
         b +
-        " }\n#branch-banner-iframe { position: " +
-        journeys_utils.sticky +
-        "; }\n@media only screen and (orientation: landscape) { body { " +
-        // ("top" === journeys_utils.position
-        //   ? "margin-top: "
-        //   : "margin-bottom: ") +
-        // (journeys_utils.isFullPage
-        //   ? journeys_utils.windowWidth + "px"
-        //   : journeys_utils.bannerHeight) +
+        " }\n@media only screen and (orientation: landscape) { body { " +
+        ("top" === journeys_utils.position
+          ? "margin-top: "
+          : "margin-bottom: ") +
+        (journeys_utils.isFullPage
+          ? journeys_utils.windowWidth + "px"
+          : journeys_utils.bannerHeight) +
         "; }\n#branch-banner-iframe { height: " +
         (journeys_utils.isFullPage
           ? journeys_utils.windowWidth + "px"
