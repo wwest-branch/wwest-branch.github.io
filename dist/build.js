@@ -3341,11 +3341,7 @@
   var banner_css = {
     banner: function (a) {
       return (
-        ".branch-banner-is-active { -webkit-transition: all " +
-        (1.5 * banner_utils.animationSpeed) / 1000 +
-        "s ease; transition: all 0" +
-        (1.5 * banner_utils.animationSpeed) / 1000 +
-        "s ease; }\n#branch-banner { width:100%; z-index: 99999; font-family: Helvetica Neue, Sans-serif; -webkit-font-smoothing: antialiased; -webkit-user-select: none; -moz-user-select: none; user-select: none; -webkit-transition: all " +
+        "#branch-banner { width:100%; z-index: 99999; font-family: Helvetica Neue, Sans-serif; -webkit-font-smoothing: antialiased; -webkit-user-select: none; -moz-user-select: none; user-select: none; -webkit-transition: all " +
         banner_utils.animationSpeed / 1000 +
         "s ease; transition: all 0" +
         banner_utils.animationSpeed / 1000 +
@@ -3945,8 +3941,6 @@
         "body { -webkit-transition: all " +
         (1.5 * journeys_utils.animationSpeed) / 1000 +
         "s ease; }\n"),
-      (document.body.style.transition =
-        "all 0" + (1.5 * journeys_utils.animationSpeed) / 1000 + "s ease"),
       (b =
         "-webkit-transition: all " +
         journeys_utils.animationSpeed / 1000 +
@@ -3957,8 +3951,7 @@
       (a ? a : "") +
       ("#branch-banner-iframe { box-shadow: 0 0 5px rgba(0, 0, 0, .35); width: 1px; min-width:100%; left: 0; right: 0; border: 0; height: " +
         journeys_utils.bannerHeight +
-        "; z-index: 99999; margin-top:" +
-        "-" +
+        "; z-index: 99999; margin-top: -" +
         journeys_utils.bannerHeight +
         ";" +
         b +
@@ -4016,14 +4009,13 @@
     setTimeout(function () {
       b
         ? ((a.style.top = null), (a.style.bottom = null))
-        : "top" === journeys_utils.position
-        ? (a.style.top = "0")
-        : "bottom" === journeys_utils.position &&
-          (journeys_utils.journeyLinkData &&
-          journeys_utils.journeyLinkData.journey_link_data &&
-          !journeys_utils.journeyLinkData.journey_link_data.safeAreaRequired
-            ? (a.style.bottom = "0")
-            : journeys_utils._dynamicallyRepositionBanner());
+        : "top" !== journeys_utils.position &&
+          ("bottom" !== journeys_utils.position ||
+            (journeys_utils.journeyLinkData &&
+              journeys_utils.journeyLinkData.journey_link_data &&
+              !journeys_utils.journeyLinkData.journey_link_data
+                .safeAreaRequired) ||
+            journeys_utils._dynamicallyRepositionBanner());
       journeys_utils.branch._publishEvent(
         "didShowJourney",
         journeys_utils.journeyLinkData
