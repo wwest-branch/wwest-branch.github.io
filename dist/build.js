@@ -2303,8 +2303,8 @@ function generateIframeOuterCSS() {
   document.body.style.transition = "";
   document.getElementById("branch-banner-iframe") && (document.getElementById("branch-banner-iframe").style.transition = "");
   journeys_utils.entryAnimationDisabled || (a = "body { -webkit-transition: all " + 1.5 * journeys_utils.animationSpeed / 1000 + "s ease; }\n", document.body.style.transition = "all 0" + 1.5 * journeys_utils.animationSpeed / 1000 + "s ease", b = "-webkit-transition: all " + journeys_utils.animationSpeed / 1000 + "s ease; transition: all 0" + journeys_utils.animationSpeed / 1000 + "s ease;");
-  return (a ? a : "") + ("#branch-banner-iframe { box-shadow: 0 0 5px rgba(0, 0, 0, .35); width: 1px; min-width:100%; left: 0; right: 0; border: 0; height: " + journeys_utils.bannerHeight + "; z-index: 99999;" + ("top" === journeys_utils.position ? "transform: translate(0, -" + journeys_utils.bannerHeight + ");" : "") + b + " }\n#branch-banner-iframe { position: " + journeys_utils.sticky + "; }\n@media only screen and (orientation: landscape) { body { " + ("top" === journeys_utils.position ? "margin-top: " : 
-  "margin-bottom: ") + (journeys_utils.isFullPage ? journeys_utils.windowWidth + "px" : journeys_utils.bannerHeight) + "; }\n#branch-banner-iframe { height: " + (journeys_utils.isFullPage ? journeys_utils.windowWidth + "px" : journeys_utils.bannerHeight) + "; }");
+  return (a ? a : "") + ("#branch-banner-iframe { box-shadow: 0 0 5px rgba(0, 0, 0, .35); width: 1px; min-width:100%; left: 0; right: 0; border: 0; height: " + journeys_utils.bannerHeight + "; z-index: 99999;" + b + " }\n#branch-banner-iframe { position: " + journeys_utils.sticky + "; }\n@media only screen and (orientation: landscape) { body { " + ("top" === journeys_utils.position ? "margin-top: " : "margin-bottom: ") + (journeys_utils.isFullPage ? journeys_utils.windowWidth + "px" : journeys_utils.bannerHeight) + 
+  "; }\n#branch-banner-iframe { height: " + (journeys_utils.isFullPage ? journeys_utils.windowWidth + "px" : journeys_utils.bannerHeight) + "; }");
 }
 journeys_utils.addIframeInnerCSS = function(a, b) {
   var c = document.createElement("style");
@@ -2318,7 +2318,7 @@ journeys_utils.addIframeInnerCSS = function(a, b) {
     var e = d.getElementsByClassName("branch-banner-content")[0];
     e && (e.style.height = journeys_utils.bannerHeight);
   }
-  "top" === journeys_utils.position ? a.style.top = "0px" : "bottom" === journeys_utils.position && (a.style.bottom = "-" + journeys_utils.bannerHeight);
+  "top" === journeys_utils.position ? a.style.top = "-" + journeys_utils.bannerHeight : "bottom" === journeys_utils.position && (a.style.bottom = "-" + journeys_utils.bannerHeight);
   try {
     var e = d.getElementsByClassName("branch-banner-content")[0], f = window.getComputedStyle(e).getPropertyValue("background-color").split(", ");
     f[3] && 0 === parseFloat(f[3]) && (a.style.boxShadow = "none");
@@ -2332,7 +2332,7 @@ journeys_utils.animateBannerEntrance = function(a, b) {
   banner_utils.addClass(document.body, "branch-banner-is-active");
   journeys_utils.isFullPage && "fixed" === journeys_utils.sticky && banner_utils.addClass(document.body, "branch-banner-no-scroll");
   setTimeout(function() {
-    b ? (a.style.top = null, a.style.bottom = null) : "top" !== journeys_utils.position && "bottom" === journeys_utils.position && (journeys_utils.journeyLinkData && journeys_utils.journeyLinkData.journey_link_data && !journeys_utils.journeyLinkData.journey_link_data.safeAreaRequired ? a.style.bottom = "0" : journeys_utils._dynamicallyRepositionBanner());
+    b ? (a.style.top = null, a.style.bottom = null) : "top" !== journeys_utils.position && "bottom" === journeys_utils.position && (journeys_utils.journeyLinkData && journeys_utils.journeyLinkData.journey_link_data && !journeys_utils.journeyLinkData.journey_link_data.safeAreaRequired ? a.style.transform = "translate(0px, -" + journeys_utils.bannerHeight + ")" : journeys_utils._dynamicallyRepositionBanner());
     journeys_utils.branch._publishEvent("didShowJourney", journeys_utils.journeyLinkData);
     journeys_utils.isJourneyDisplayed = !0;
   }, journeys_utils.animationDelay);
