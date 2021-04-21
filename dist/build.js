@@ -2811,6 +2811,7 @@ Branch.prototype.init = wrap(callback_params.CALLBACK_ERR_DATA, function(a, b, c
     var n = branch_view._getPageviewRequestData(journeys_utils._getPageviewMetadata(c, k), c, d, !1);
     d.renderQueue(function() {
       d._api(resources.pageview, n, function(a, b) {
+        console.log("pageviewREsponse 1", b);
         if (!a && "object" === typeof b) {
           var e = n.branch_view_id ? !0 : !1;
           branch_view.shouldDisplayJourney(b, c, e) ? branch_view.displayJourney(b.template, n, n.branch_view_id || b.event_data.branch_view_data.id, b.event_data.branch_view_data, e, b.journey_link_data) : ((b.auto_branchify || !f && utils.getParamValue("branchify_url") && d._referringLink()) && this.branch.deepview({}, {make_new_link:!1, open_app:!0, auto_branchify:!0}), journeys_utils.branch._publishEvent("willNotShowJourney"));
