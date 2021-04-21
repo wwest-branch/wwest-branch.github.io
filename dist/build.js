@@ -2279,9 +2279,9 @@ journeys_utils.addIframeOuterCSS = function(a) {
   journeys_utils.bodyMarginTop = banner_utils.getBodyStyle("margin-top");
   var c = +journeys_utils.bodyMarginTop.slice(0, -2);
   journeys_utils.bodyMarginBottom = banner_utils.getBodyStyle("margin-bottom");
-  journeys_utils.bodyMarginBottom.slice(0, -2);
-  var d = +journeys_utils.bannerHeight.slice(0, -2);
-  a || "top" !== journeys_utils.position || (document.body.style.transform = "translate(0, " + (+d + c).toString() + "px)");
+  var d = +journeys_utils.bodyMarginBottom.slice(0, -2), e = +journeys_utils.bannerHeight.slice(0, -2);
+  console.log("cssIframeContainer", a);
+  a || ("top" === journeys_utils.position ? document.body.style.marginTop = (+e + c).toString() + "px" : "bottom" === journeys_utils.position && (document.body.style.marginBottom = (+e + d).toString() + "px"));
   0 < journeys_utils.divToInjectParents.length && journeys_utils.divToInjectParents.forEach(function(a) {
     var b, c = window.getComputedStyle(a);
     c && (b = journeys_utils.isFullPage && "fixed" === c.getPropertyValue("position"));
@@ -2332,7 +2332,7 @@ journeys_utils.animateBannerEntrance = function(a, b) {
   banner_utils.addClass(document.body, "branch-banner-is-active");
   journeys_utils.isFullPage && "fixed" === journeys_utils.sticky && banner_utils.addClass(document.body, "branch-banner-no-scroll");
   setTimeout(function() {
-    b ? (a.style.top = null, a.style.bottom = null) : "bottom" === journeys_utils.position && (journeys_utils.journeyLinkData && journeys_utils.journeyLinkData.journey_link_data && !journeys_utils.journeyLinkData.journey_link_data.safeAreaRequired ? a.style.transform = "translate(0px, -" + journeys_utils.bannerHeight + ")" : journeys_utils._dynamicallyRepositionBanner());
+    b ? (a.style.top = null, a.style.bottom = null) : "top" === journeys_utils.position ? a.style.top = "0" : "bottom" === journeys_utils.position && (journeys_utils.journeyLinkData && journeys_utils.journeyLinkData.journey_link_data && !journeys_utils.journeyLinkData.journey_link_data.safeAreaRequired ? a.style.bottom = "0" : journeys_utils._dynamicallyRepositionBanner());
     journeys_utils.branch._publishEvent("didShowJourney", journeys_utils.journeyLinkData);
     journeys_utils.isJourneyDisplayed = !0;
   }, journeys_utils.animationDelay);
@@ -2436,6 +2436,7 @@ journeys_utils._handleJourneyDismiss = function(a, b, c, d, e, f, g, h) {
         journeys_utils.branch.removeListener(l);
         var b = journeys_utils._getDismissRequestData(h, utils.dismissEventToSourceMapping[a]);
         journeys_utils.branch._api(resources.dismiss, b, function(a, c) {
+          console.log("DATA", c);
           !a && "object" === typeof c && c.template && h.shouldDisplayJourney(c, null, !1) && h.displayJourney(c.template, b, b.branch_view_id || c.event_data.branch_view_data.id, c.event_data.branch_view_data, !1, c.journey_link_data);
         });
       };
@@ -2923,10 +2924,12 @@ Branch.prototype.track = wrap(callback_params.CALLBACK_ERR, function(a, b, c, d)
   c = c || {};
   d = d || {};
   utils.nonce = d.nonce ? d.nonce : utils.nonce;
+  console.log("EVENT", b);
   if ("pageview" === b) {
     (b = utils.mergeHostedDeeplinkData(utils.getHostedDeepLinkData(), c)) && 0 < Object.keys(b).length && (c.hosted_deeplink_data = b);
     var e = branch_view._getPageviewRequestData(journeys_utils._getPageviewMetadata(d, c), d, this, !1);
     this._api(resources.pageview, e, function(b, c) {
+      console.log("pageViewrepsonse", c);
       if (!b && "object" === typeof c) {
         var f = e.branch_view_id ? !0 : !1;
         branch_view.shouldDisplayJourney(c, d, f) ? branch_view.displayJourney(c.template, e, e.branch_view_id || c.event_data.branch_view_data.id, c.event_data.branch_view_data, f, c.journey_link_data) : journeys_utils.branch._publishEvent("willNotShowJourney");
