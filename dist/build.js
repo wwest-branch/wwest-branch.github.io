@@ -2279,9 +2279,8 @@ journeys_utils.addIframeOuterCSS = function(a) {
   journeys_utils.bodyMarginTop = banner_utils.getBodyStyle("margin-top");
   var c = +journeys_utils.bodyMarginTop.slice(0, -2);
   journeys_utils.bodyMarginBottom = banner_utils.getBodyStyle("margin-bottom");
-  var d = +journeys_utils.bodyMarginBottom.slice(0, -2), e = +journeys_utils.bannerHeight.slice(0, -2);
-  console.log("cssIframeContainer", a);
-  a || ("top" === journeys_utils.position ? document.body.style.marginTop = (+e + c).toString() + "px" : "bottom" === journeys_utils.position && (document.body.style.marginBottom = (+e + d).toString() + "px"));
+  var d = +journeys_utils.bodyMarginBottom.slice(0, -2), e = +journeys_utils.bannerHeight.slice(0, -2), f = Number(journeys_utils.bannerHeight.split("px")[0]);
+  a || ("top" === journeys_utils.position ? (document.body.style.marginTop = (+e + c).toString() + "px", "fixed" === journeys_utils.sticky && 576 <= f && (document.body.style.overflow = "hidden", document.body.style.height = "-webkit-fill-available")) : "bottom" === journeys_utils.position && (document.body.style.marginBottom = (+e + d).toString() + "px"));
   0 < journeys_utils.divToInjectParents.length && journeys_utils.divToInjectParents.forEach(function(a) {
     var b, c = window.getComputedStyle(a);
     c && (b = journeys_utils.isFullPage && "fixed" === c.getPropertyValue("position"));
@@ -2436,7 +2435,6 @@ journeys_utils._handleJourneyDismiss = function(a, b, c, d, e, f, g, h) {
         journeys_utils.branch.removeListener(l);
         var b = journeys_utils._getDismissRequestData(h, utils.dismissEventToSourceMapping[a]);
         journeys_utils.branch._api(resources.dismiss, b, function(a, c) {
-          console.log("DATA", c);
           !a && "object" === typeof c && c.template && h.shouldDisplayJourney(c, null, !1) && h.displayJourney(c.template, b, b.branch_view_id || c.event_data.branch_view_data.id, c.event_data.branch_view_data, !1, c.journey_link_data);
         });
       };
@@ -2448,14 +2446,12 @@ journeys_utils._getPageviewMetadata = function(a, b) {
   return utils.merge({url:a && a.url || utils.getWindowLocation(), user_agent:navigator.userAgent, language:navigator.language, screen_width:screen.width || -1, screen_height:screen.height || -1, window_device_pixel_ratio:window.devicePixelRatio || 1}, b || {});
 };
 journeys_utils.animateBannerExit = function(a, b) {
+  var c = Number(journeys_utils.bannerHeight.split("px")[0]);
+  console.log("on exit now");
+  "fixed" === journeys_utils.sticky && 576 <= c && (document.body.style.overflow = null, document.body.style.height = null);
   journeys_utils.exitAnimationDisabled || (journeys_utils.exitAnimationIsRunning = !0);
-  if (journeys_utils.entryAnimationDisabled && !journeys_utils.exitAnimationDisabled) {
-    document.body.style.transition = "all 0" + 1.5 * journeys_utils.animationSpeed / 1000 + "s ease";
-    document.getElementById("branch-banner-iframe").style.transition = "all 0" + journeys_utils.animationSpeed / 1000 + "s ease";
-    var c = document.getElementById("branch-iframe-css").innerHTML + "\n", c = c + ("body { -webkit-transition: all " + 1.5 * journeys_utils.animationSpeed / 1000 + "s ease; }\n"), c = c + ("#branch-banner-iframe { -webkit-transition: all " + journeys_utils.animationSpeed / 1000 + "s ease; }\n");
-    document.getElementById("branch-iframe-css").innerHTML = "";
-    document.getElementById("branch-iframe-css").innerHTML = c;
-  }
+  journeys_utils.entryAnimationDisabled && !journeys_utils.exitAnimationDisabled && (document.body.style.transition = "all 0" + 1.5 * journeys_utils.animationSpeed / 1000 + "s ease", document.getElementById("branch-banner-iframe").style.transition = "all 0" + journeys_utils.animationSpeed / 1000 + "s ease", c = document.getElementById("branch-iframe-css").innerHTML + "\n", c += "body { -webkit-transition: all " + 1.5 * journeys_utils.animationSpeed / 1000 + "s ease; }\n", c += "#branch-banner-iframe { -webkit-transition: all " + 
+  journeys_utils.animationSpeed / 1000 + "s ease; }\n", document.getElementById("branch-iframe-css").innerHTML = "", document.getElementById("branch-iframe-css").innerHTML = c);
   "top" === journeys_utils.position ? a.style.top = "-" + journeys_utils.bannerHeight : "bottom" === journeys_utils.position && (a.style.bottom = "-" + journeys_utils.bannerHeight);
   journeys_utils.branch._publishEvent("willCloseJourney", journeys_utils.journeyLinkData);
   setTimeout(function() {
@@ -2811,7 +2807,6 @@ Branch.prototype.init = wrap(callback_params.CALLBACK_ERR_DATA, function(a, b, c
     var n = branch_view._getPageviewRequestData(journeys_utils._getPageviewMetadata(c, k), c, d, !1);
     d.renderQueue(function() {
       d._api(resources.pageview, n, function(a, b) {
-        console.log("pageviewREsponse 1", b);
         if (!a && "object" === typeof b) {
           var e = n.branch_view_id ? !0 : !1;
           branch_view.shouldDisplayJourney(b, c, e) ? branch_view.displayJourney(b.template, n, n.branch_view_id || b.event_data.branch_view_data.id, b.event_data.branch_view_data, e, b.journey_link_data) : ((b.auto_branchify || !f && utils.getParamValue("branchify_url") && d._referringLink()) && this.branch.deepview({}, {make_new_link:!1, open_app:!0, auto_branchify:!0}), journeys_utils.branch._publishEvent("willNotShowJourney"));
@@ -2925,12 +2920,10 @@ Branch.prototype.track = wrap(callback_params.CALLBACK_ERR, function(a, b, c, d)
   c = c || {};
   d = d || {};
   utils.nonce = d.nonce ? d.nonce : utils.nonce;
-  console.log("EVENT", b);
   if ("pageview" === b) {
     (b = utils.mergeHostedDeeplinkData(utils.getHostedDeepLinkData(), c)) && 0 < Object.keys(b).length && (c.hosted_deeplink_data = b);
     var e = branch_view._getPageviewRequestData(journeys_utils._getPageviewMetadata(d, c), d, this, !1);
     this._api(resources.pageview, e, function(b, c) {
-      console.log("pageViewrepsonse", c);
       if (!b && "object" === typeof c) {
         var f = e.branch_view_id ? !0 : !1;
         branch_view.shouldDisplayJourney(c, d, f) ? branch_view.displayJourney(c.template, e, e.branch_view_id || c.event_data.branch_view_data.id, c.event_data.branch_view_data, f, c.journey_link_data) : journeys_utils.branch._publishEvent("willNotShowJourney");
