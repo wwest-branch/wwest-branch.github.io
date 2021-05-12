@@ -2280,7 +2280,7 @@ journeys_utils.addIframeOuterCSS = function(a) {
   var c = +journeys_utils.bodyMarginTop.slice(0, -2);
   journeys_utils.bodyMarginBottom = banner_utils.getBodyStyle("margin-bottom");
   var d = +journeys_utils.bodyMarginBottom.slice(0, -2), e = +journeys_utils.bannerHeight.slice(0, -2), f = Number(journeys_utils.bannerHeight.split("px")[0]);
-  a || ("top" === journeys_utils.position ? (document.body.style.marginTop = (+e + c).toString() + "px", "fixed" === journeys_utils.sticky && 576 <= f && (document.body.style.overflow = "hidden", document.body.style.height = "-webkit-fill-available")) : "bottom" === journeys_utils.position && (document.body.style.marginBottom = (+e + d).toString() + "px"));
+  a || ("top" === journeys_utils.position ? (document.body.style.marginTop = (+e + c).toString() + "px", "fixed" === journeys_utils.sticky && 576 <= f && (document.body.style.overflow = "hidden", document.body.style.height = "100%")) : "bottom" === journeys_utils.position && (document.body.style.marginBottom = (+e + d).toString() + "px"));
   0 < journeys_utils.divToInjectParents.length && journeys_utils.divToInjectParents.forEach(function(a) {
     var b, c = window.getComputedStyle(a);
     c && (b = journeys_utils.isFullPage && "fixed" === c.getPropertyValue("position"));
