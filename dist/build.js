@@ -3746,16 +3746,16 @@
       return p;
     };
   // Input 14
-  var journeys_utils = {
-    _callback_index: 1,
-    position: "top",
-    sticky: "absolute",
-    bannerHeight: "76px",
-    isFullPage: !1,
-    isHalfPage: !1,
-    divToInjectParents: [],
-    isSafeAreaEnabled: !1,
-  };
+  var journeys_utils = {},
+    MIN_HEIGHT_FULL_PAGE_INTERSTITIAL = 576;
+  journeys_utils._callback_index = 1;
+  journeys_utils.position = "top";
+  journeys_utils.sticky = "absolute";
+  journeys_utils.bannerHeight = "76px";
+  journeys_utils.isFullPage = !1;
+  journeys_utils.isHalfPage = !1;
+  journeys_utils.divToInjectParents = [];
+  journeys_utils.isSafeAreaEnabled = !1;
   journeys_utils.windowHeight = window.innerHeight;
   journeys_utils.windowWidth = window.innerWidth;
   window.innerHeight < window.innerWidth &&
@@ -3910,13 +3910,14 @@
     journeys_utils.bodyMarginBottom =
       banner_utils.getBodyStyle("margin-bottom");
     var d = +journeys_utils.bodyMarginBottom.slice(0, -2),
-      e = +journeys_utils.bannerHeight.slice(0, -2),
-      f = Number(journeys_utils.bannerHeight.split("px")[0]);
+      e = +journeys_utils.bannerHeight.slice(0, -2);
     a ||
       ("top" === journeys_utils.position
-        ? ((document.body.style.marginTop = (+e + c).toString() + "px"),
+        ? ((c = +e + c),
+          (d = Number(journeys_utils.bannerHeight.split("px")[0])),
+          (document.body.style.marginTop = c.toString() + "px"),
           "fixed" === journeys_utils.sticky &&
-            576 <= f &&
+            d >= MIN_HEIGHT_FULL_PAGE_INTERSTITIAL &&
             (document.body.style.overflow = "hidden"))
         : "bottom" === journeys_utils.position &&
           (document.body.style.marginBottom = (+e + d).toString() + "px"));
@@ -4334,14 +4335,12 @@
     );
   };
   journeys_utils.animateBannerExit = function (a, b) {
-    var c = Number(journeys_utils.bannerHeight.split("px")[0]);
-    console.log("on exit now");
-    "fixed" === journeys_utils.sticky &&
-      576 <= c &&
-      ((document.body.style.overflow = null),
-      (document.body.style.height = null));
     journeys_utils.exitAnimationDisabled ||
       (journeys_utils.exitAnimationIsRunning = !0);
+    var c = Number(journeys_utils.bannerHeight.split("px")[0]);
+    "fixed" === journeys_utils.sticky &&
+      c >= MIN_HEIGHT_FULL_PAGE_INTERSTITIAL &&
+      (document.body.style.overflow = "unset");
     journeys_utils.entryAnimationDisabled &&
       !journeys_utils.exitAnimationDisabled &&
       ((document.body.style.transition =
