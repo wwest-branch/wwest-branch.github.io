@@ -1353,7 +1353,7 @@
     app_service_endpoint: "https://app.link",
     link_service_endpoint: "https://bnc.lt",
     api_endpoint: "https://api2.branch.io",
-    version: "2.58.0",
+    version: "2.58.1",
   };
   // Input 3
   var safejson = {
@@ -3537,29 +3537,29 @@
       c.className = "branch-animation";
       utils.addNonceAttribute(c);
       document.body.appendChild(c);
-      var d = utils.mobileUserAgent(),
-        d =
-          '<html><head></head><body class="' +
-          ("ios" === d || "ipad" === d
-            ? "branch-banner-ios"
-            : "android" === d
-            ? "branch-banner-android"
-            : "branch-banner-desktop") +
-          '"><div id="branch-banner" class="branch-animation">' +
-          banner_html.banner(a, b) +
-          "</body></html>";
-      c.contentWindow.document.open();
-      c.contentWindow.document.write(d);
-      c.contentWindow.document.close();
+      var d;
+      d = utils.mobileUserAgent();
+      d =
+        "ios" === d || "ipad" === d
+          ? "branch-banner-ios"
+          : "android" === d
+          ? "branch-banner-android"
+          : "branch-banner-desktop";
+      var e = c.contentDocument || c.contentWindow.document;
+      e.head = e.createElement("head");
+      e.body = e.createElement("body");
+      e.body.className = d;
+      banner_html.div(a, b, e);
       return c;
     },
-    div: function (a, b) {
-      var c = document.createElement("div");
-      c.id = "branch-banner";
-      c.className = "branch-animation";
-      c.innerHTML = banner_html.banner(a, b);
-      document.body.appendChild(c);
-      return c;
+    div: function (a, b, c) {
+      c = c || document;
+      var d = c.createElement("div");
+      d.id = "branch-banner";
+      d.className = "branch-animation";
+      d.innerHTML = banner_html.banner(a, b);
+      c.body.appendChild(d);
+      return d;
     },
     markup: function (a, b) {
       var c =
@@ -3746,16 +3746,16 @@
       return p;
     };
   // Input 14
-  var journeys_utils = {},
-    MIN_HEIGHT_FULL_PAGE_INTERSTITIAL = 576;
-  journeys_utils._callback_index = 1;
-  journeys_utils.position = "top";
-  journeys_utils.sticky = "absolute";
-  journeys_utils.bannerHeight = "76px";
-  journeys_utils.isFullPage = !1;
-  journeys_utils.isHalfPage = !1;
-  journeys_utils.divToInjectParents = [];
-  journeys_utils.isSafeAreaEnabled = !1;
+  var journeys_utils = {
+    _callback_index: 1,
+    position: "top",
+    sticky: "absolute",
+    bannerHeight: "76px",
+    isFullPage: !1,
+    isHalfPage: !1,
+    divToInjectParents: [],
+    isSafeAreaEnabled: !1,
+  };
   journeys_utils.windowHeight = window.innerHeight;
   journeys_utils.windowWidth = window.innerWidth;
   window.innerHeight < window.innerWidth &&
@@ -3883,23 +3883,18 @@
     document.body.appendChild(a);
     return a;
   };
-  journeys_utils.createIframeInnerHTML = function (a, b) {
-    return (
-      '<html><head></head><body class="' +
-      ("ios" === b || "ipad" === b
+  journeys_utils.addHtmlToIframe = function (a, b, c) {
+    c =
+      "ios" === c || "ipad" === c
         ? "branch-banner-ios"
-        : "android" === b
+        : "android" === c
         ? "branch-banner-android"
-        : "branch-banner-desktop") +
-      '">' +
-      a +
-      "</body></html>"
-    );
-  };
-  journeys_utils.addHtmlToIframe = function (a, b) {
-    a.contentWindow.document.open();
-    a.contentWindow.document.write(b);
-    a.contentWindow.document.close();
+        : "branch-banner-desktop";
+    a = a.contentDocument || a.contentWindow.document;
+    a.head = a.createElement("head");
+    a.body = a.createElement("body");
+    a.body.innerHTML = b;
+    a.body.className = c;
   };
   journeys_utils.addIframeOuterCSS = function (a) {
     var b = document.createElement("style");
@@ -3913,12 +3908,7 @@
       e = +journeys_utils.bannerHeight.slice(0, -2);
     a ||
       ("top" === journeys_utils.position
-        ? ((c = +e + c),
-          (d = Number(journeys_utils.bannerHeight.split("px")[0])),
-          (document.body.style.marginTop = c.toString() + "px"),
-          "fixed" === journeys_utils.sticky &&
-            d >= MIN_HEIGHT_FULL_PAGE_INTERSTITIAL &&
-            (document.body.style.overflow = "hidden"))
+        ? (document.body.style.marginTop = (+e + c).toString() + "px")
         : "bottom" === journeys_utils.position &&
           (document.body.style.marginBottom = (+e + d).toString() + "px"));
     0 < journeys_utils.divToInjectParents.length &&
@@ -4019,9 +4009,13 @@
   };
   journeys_utils.animateBannerEntrance = function (a, b) {
     banner_utils.addClass(document.body, "branch-banner-is-active");
-    journeys_utils.isFullPage &&
-      "fixed" === journeys_utils.sticky &&
+    if (journeys_utils.isFullPage && "fixed" === journeys_utils.sticky) {
+      var c = document.createElement("style");
+      c.type = "text/css";
+      c.innerHTML = ".branch-banner-no-scroll {overflow: hidden;}";
+      document.head.appendChild(c);
       banner_utils.addClass(document.body, "branch-banner-no-scroll");
+    }
     setTimeout(function () {
       b
         ? ((a.style.top = null), (a.style.bottom = null))
@@ -4337,27 +4331,28 @@
   journeys_utils.animateBannerExit = function (a, b) {
     journeys_utils.exitAnimationDisabled ||
       (journeys_utils.exitAnimationIsRunning = !0);
-    var c = Number(journeys_utils.bannerHeight.split("px")[0]);
-    "fixed" === journeys_utils.sticky &&
-      c >= MIN_HEIGHT_FULL_PAGE_INTERSTITIAL &&
-      (document.body.style.overflow = "unset");
-    journeys_utils.entryAnimationDisabled &&
-      !journeys_utils.exitAnimationDisabled &&
-      ((document.body.style.transition =
-        "all 0" + (1.5 * journeys_utils.animationSpeed) / 1000 + "s ease"),
-      (document.getElementById("branch-banner-iframe").style.transition =
-        "all 0" + journeys_utils.animationSpeed / 1000 + "s ease"),
-      (c = document.getElementById("branch-iframe-css").innerHTML + "\n"),
-      (c +=
-        "body { -webkit-transition: all " +
-        (1.5 * journeys_utils.animationSpeed) / 1000 +
-        "s ease; }\n"),
-      (c +=
-        "#branch-banner-iframe { -webkit-transition: all " +
-        journeys_utils.animationSpeed / 1000 +
-        "s ease; }\n"),
-      (document.getElementById("branch-iframe-css").innerHTML = ""),
-      (document.getElementById("branch-iframe-css").innerHTML = c));
+    if (
+      journeys_utils.entryAnimationDisabled &&
+      !journeys_utils.exitAnimationDisabled
+    ) {
+      document.body.style.transition =
+        "all 0" + (1.5 * journeys_utils.animationSpeed) / 1000 + "s ease";
+      document.getElementById("branch-banner-iframe").style.transition =
+        "all 0" + journeys_utils.animationSpeed / 1000 + "s ease";
+      var c = document.getElementById("branch-iframe-css").innerHTML + "\n",
+        c =
+          c +
+          ("body { -webkit-transition: all " +
+            (1.5 * journeys_utils.animationSpeed) / 1000 +
+            "s ease; }\n"),
+        c =
+          c +
+          ("#branch-banner-iframe { -webkit-transition: all " +
+            journeys_utils.animationSpeed / 1000 +
+            "s ease; }\n");
+      document.getElementById("branch-iframe-css").innerHTML = "";
+      document.getElementById("branch-iframe-css").innerHTML = c;
+    }
     "top" === journeys_utils.position
       ? (a.style.top = "-" + journeys_utils.bannerHeight)
       : "bottom" === journeys_utils.position &&
@@ -4515,8 +4510,7 @@
     c = journeys_utils.getIframeCss(b);
     b = journeys_utils.removeScriptAndCss(b);
     e = journeys_utils.createAndAppendIframe();
-    b = journeys_utils.createIframeInnerHTML(b, utils.mobileUserAgent());
-    journeys_utils.addHtmlToIframe(e, b);
+    journeys_utils.addHtmlToIframe(e, b, utils.mobileUserAgent());
     journeys_utils.addIframeOuterCSS(c);
     journeys_utils.addIframeInnerCSS(e, a);
     journeys_utils.addDynamicCtaText(e, d);
