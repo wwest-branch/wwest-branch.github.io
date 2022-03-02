@@ -1396,6 +1396,7 @@ utils.cleanBannerText = function(a) {
 };
 utils.getTitle = function() {
   var a = document.getElementsByTagName("title");
+  console.log("TAGS ", a);
   return 0 < a.length ? a[0].innerText : null;
 };
 utils.getDescription = function() {
@@ -2331,7 +2332,7 @@ journeys_utils.addIframeInnerCSS = function(a, b) {
   d.head.appendChild(c);
   if (journeys_utils.isHalfPage || journeys_utils.isFullPage) {
     var e = d.getElementsByClassName("branch-banner-content")[0];
-    e && (e.style.height = journeys_utils.bannerHeight);
+    e && (e.style.height = journeys_utils.bannerHeight, e.setAttribute("role", "dialog"), e.setAttribute("aria-modal", "true"), e.setAttribute("tabindex", "-1"), e.setAttribute("aria-label", "Modal Dialog Container"), console.log("Content", e));
   }
   "top" === journeys_utils.position ? a.style.top = "-" + journeys_utils.bannerHeight : "bottom" === journeys_utils.position && (a.style.bottom = "-" + journeys_utils.bannerHeight);
   try {
@@ -2571,6 +2572,7 @@ function renderHtmlBlob(a, b, c, d) {
   var k = journeys_utils.getIframeCss(b);
   b = journeys_utils.removeScriptAndCss(b);
   var h = journeys_utils.createIframe();
+  console.log("IFRAME", h);
   h.onload = function() {
     journeys_utils.addHtmlToIframe(h, b, utils.mobileUserAgent());
     journeys_utils.addIframeOuterCSS(k, f);
