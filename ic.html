@@ -64,6 +64,8 @@
         font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif;
         font-weight: 600;
+        background-color: transparent;
+        border: none;
       }
 
       #branch-banner .branch-banner-content {
@@ -81,7 +83,7 @@
       }
 
       #branch-banner .branch-banner-content-box {
-        margin-top: 65vh;
+        margin-top: 5vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -125,46 +127,70 @@
       }
     </style>
   </head>
-  <body class="branch-banner-android" role="dialog" aria-modal="true">
+  <body class="branch-banner-android">
     <div data-id="1" id="branch-banner" class="branch-animation">
-      <div data-id="2" class="branch-banner-content">
-        <div
-          data-id="3"
-          class="branch-banner-close"
-          id="branch-banner-close1"
+      <!-- <div
+        data-id="2"
+        class="branch-banner-content"
+        role="dialog"
+        aria-modal="true"
+        tabindex="-1"
+        aria-label="Modal Dialog Container"
+      > -->
+      <img
+        src="https://cdn.branch.io/branch-assets/1635309840260-undefined.jpeg"
+        data-id="2"
+        class="branch-banner-content"
+        role="dialog"
+        aria-modal="true"
+        tabindex="-1"
+        aria-label="Modal Dialog Container"
+      />
+
+      <!-- issues 99, 100, and 102 above -->
+      <div
+        data-id="3"
+        class="branch-banner-close"
+        id="branch-banner-close1"
+        role="text"
+        aria-label="Close banner"
+        tabindex="0"
+      >
+        ×
+      </div>
+      <div data-id="4" class="branch-banner-content-box">
+        <h1 data-id="5" class="branch-banner-title">
+          Fast delivery and fresh selection from Publix
+        </h1>
+        <!-- issue 104 above -->
+        <div data-id="6" class="branch-banner-description">
+          FREE delivery or pickup on your first order
+        </div>
+        <button
+          data-id="7"
+          id="branch-mobile-action"
+          class="branch-banner-button"
           role="text"
-          aria-label="Close banner"
+          aria-label="Continue or App Download or Open Button"
           tabindex="0"
         >
-          ×
-        </div>
-        <div data-id="4" class="branch-banner-content-box">
-          <div data-id="5" class="branch-banner-title">
-            Fast delivery and fresh selection from Publix
-          </div>
-          <div data-id="6" class="branch-banner-description">
-            FREE delivery or pickup on your first order
-          </div>
-          <div
-            data-id="7"
-            id="branch-mobile-action"
-            class="branch-banner-button"
-            role="text"
-            aria-label="App Download or Open Button"
-            tabindex="0"
-          >
-            Continue
-          </div>
-          <div
-            data-id="8"
-            id="branch-banner-close2"
-            class="branch-banner-continue"
-            tabindex="0"
-          >
-            Continue in browser
-          </div>
-        </div>
+          Continue
+        </button>
+        <!-- issue 105 and 106 above: for 106 added Continue at the beginning of aria-label -->
+        <button
+          data-id="8"
+          id="branch-banner-close2"
+          class="branch-banner-continue"
+          tabindex="0"
+        >
+          Continue in browser
+        </button>
+        <!-- issue 105 above: added         
+            background-color: transparent;
+            border: none; 
+            in branch-banner-continue class-->
       </div>
+      <!-- </div> -->
     </div>
   </body>
 </html>
